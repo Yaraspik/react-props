@@ -2,8 +2,10 @@ import ListItemInterface from "../interfaces/ListItemInterface";
 
 const CreateListItem = (props: { item: ListItemInterface }): JSX.Element => {
   const { item } = props;
-
   if (!item || item.state === "removed") return <></>;
+
+  const quantity = item.quantity ? item.quantity : 0;
+  const title = item.title ? item.title : '';
 
   let price, level = "level-medium";
 
@@ -20,9 +22,9 @@ const CreateListItem = (props: { item: ListItemInterface }): JSX.Element => {
       break;
   }
 
-  if (item.quantity < 10) {
+  if (quantity < 10) {
     level = "level-low";
-  } else if (item.quantity > 20) {
+  } else if (quantity > 20) {
     level = "level-high";
   }
 
@@ -35,7 +37,7 @@ const CreateListItem = (props: { item: ListItemInterface }): JSX.Element => {
           </a>
         </div>
         <div className="item-details">
-          <p className="item-title" dangerouslySetInnerHTML={{__html: item.title.substring(0, 49) + "..."}}></p>
+          <p className="item-title" dangerouslySetInnerHTML={{ __html: title.substring(0, 49) + "..." }}></p>
           <p className="item-price">{price}</p>
           <p className={`item-quantity ${level}`}>{item.quantity}</p>
         </div>

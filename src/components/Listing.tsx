@@ -1,7 +1,7 @@
-import ListingInterface from "../interfaces/ListingInterface";
+import ListItemInterface from "../interfaces/ListItemInterface";
 import CreateListItem from "./CreateListItem";
 
-const Listing = (props: ListingInterface): JSX.Element => { //TODO Можно ли сдезь как-то задать значение по умолчанию равное пустому массиву, или реализация строчкой ниже является верной?
+const Listing = (props: {items: Array<ListItemInterface>}): JSX.Element => {
   const items = props.items ? props.items : [];
 
   return (
